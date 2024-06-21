@@ -1,23 +1,24 @@
-import logo from './logo.svg';
-import './App.css';
+// App.js
+import React, { useState } from 'react';
+import './App.css'; // Import CSS file for styling
+import FormSummary from './components/FormSummary';
+import JobApplicationForm from './components/JobApplicationForm';
 
 function App() {
+  const [formData, setFormData] = useState(null);
+
+  const handleFormSubmit = (data) => {
+    setFormData(data);
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>Job Application Form</h1>
+      {formData ? (
+        <FormSummary data={formData} />
+      ) : (
+        <JobApplicationForm onSubmit={handleFormSubmit} />
+      )}
     </div>
   );
 }
